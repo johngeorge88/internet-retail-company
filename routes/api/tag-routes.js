@@ -60,7 +60,7 @@ router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   Tag.update(
     {
-      tag_name: req.body.tag_name
+      tag_name: req.body.tag_name,
     },
     {
       where: {
@@ -73,11 +73,12 @@ router.put('/:id', (req, res) => {
         res.status(404).json({ message: 'No tag found with this id' });
         return;
       }
-      res.json(dbTagData)
+      res.json(dbTagData);
     })
     .catch(err => {
-      res.status(500).json(err)
-    })
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
